@@ -1,0 +1,180 @@
+@import "swiper/scss/parallax";
+
+.home-slider {
+    border-radius: 20px;
+    height: 100%;
+    background: #f9f9f9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    .swiper-slide {
+        border-radius: 20px;
+        overflow: hidden;
+
+        .slider-bg-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-color: transparent;
+        }
+    }
+
+    .slide-content {
+        position: absolute;
+        top: 0;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+
+        &.align-left {
+            left: 0;
+            justify-content: flex-start;
+
+            .captions {
+                margin-left: 60px;
+                text-align: left;
+
+                .caption-2 {
+                    margin-right: 90px;
+                }
+            }
+        }
+
+        &.align-right {
+            right: 0;
+            justify-content: flex-end;
+
+            .captions {
+                margin-right: 60px;
+                text-align: right;
+
+                .caption-2 {
+                    margin-left: 90px;
+                }
+            }
+        }
+
+        .captions {
+            width: 500px;
+        }
+
+        .caption {
+            display: block;
+        }
+
+        .caption-1 {
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 52px;
+            color: var(--color-black);
+            margin-bottom: 10px;
+        }
+
+        .caption-2 {
+            font-size: 20px;
+            line-height: 30px;
+            color: var(--color-gray);
+            margin-top: 15px;
+            font-weight: 400;
+        }
+    }
+
+    .swiper-pagination {
+        bottom: 50px !important;
+        left: 60px !important;
+        width: auto !important;
+        transform: none !important;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 20;
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #cbd5e0;
+            opacity: 1;
+            margin: 0 4px !important;
+            transition: var(--transition-200);
+            border-radius: 50%;
+
+            &.swiper-pagination-bullet-active {
+                background: #0076ff;
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .home-slider {
+        .slide-content {
+            .captions {
+                margin-left: 40px !important;
+                width: 400px;
+            }
+            .caption-1 {
+                font-size: 34px;
+                line-height: 42px;
+            }
+            .caption-2 {
+                font-size: 16px;
+                line-height: 26px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .home-slider {
+        border-radius: 12px;
+        
+        .slide-content {
+            .captions {
+                margin-left: 30px !important;
+                width: 80%;
+            }
+            .caption-1 {
+                font-size: 28px;
+                line-height: 36px;
+            }
+
+            .caption-2 {
+                font-size: 15px;
+                line-height: 25px;
+            }
+        }
+        
+        .swiper-pagination {
+            bottom: 15px !important;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .home-slider {
+        .slide-content {
+            &.align-left, &.align-right {
+                .captions {
+                    margin: 0 40px 0 25px !important;
+                    width: auto;
+                }
+            }
+
+            .caption-1 {
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .caption-2 {
+                font-size: 14px;
+                line-height: 22px;
+            }
+        }
+    }
+}
