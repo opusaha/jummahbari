@@ -2,8 +2,85 @@
     <div class="container">
         <div class="footer">
             <div class="footer-top">
-                <div class="row">
-                    <div class="col-lg-5 col-md-8">
+                {{-- 18-col grid theme: col-9 = 50% so two blocks per row --}}
+                <div class="row g-4 g-lg-5 footer-top-grid">
+                    @if ($footerMenuOne->isNotEmpty())
+                        <div class="col-9">
+                            <div class="footer-links">
+                                <div class="title">{{ setting('storefront_footer_menu_one_title') }}</div>
+
+                                <ul class="list-inline">
+                                    @foreach ($footerMenuOne as $menuItem)
+                                        <li>
+                                            <a href="{{ $menuItem->url() }}" target="{{ $menuItem->target }}">
+                                                {{ $menuItem->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if ($footerMenuTwo->isNotEmpty())
+                        <div class="col-9">
+                            <div class="footer-links">
+                                <div class="title">{{ setting('storefront_footer_menu_two_title') }}</div>
+
+                                <ul class="list-inline">
+                                    @foreach ($footerMenuTwo as $menuItem)
+                                        <li>
+                                            <a href="{{ $menuItem->url() }}" target="{{ $menuItem->target }}">
+                                                {{ $menuItem->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-9">
+                        <div class="footer-links">
+                            <div class="title">{{ trans('storefront::layouts.my_account') }}</div>
+
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="{{ route('account.dashboard.index') }}">
+                                        {{ trans('storefront::account.pages.dashboard') }}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('account.orders.index') }}">
+                                        {{ trans('storefront::account.pages.my_orders') }}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('account.reviews.index') }}">
+                                        {{ trans('storefront::account.pages.my_reviews') }}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('account.profile.edit') }}">
+                                        {{ trans('storefront::account.pages.my_profile') }}
+                                    </a>
+                                </li>
+
+                                @auth
+                                    <li>
+                                        <a href="{{ route('logout') }}">
+                                            {{ trans('storefront::account.pages.logout') }}
+                                        </a>
+                                    </li>
+                                @endauth
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-9">
                         <div class="contact-us">
                             <div class="title">{{ trans('storefront::layouts.contact_us') }}</div>
 
@@ -63,84 +140,8 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-5">
-                        <div class="footer-links">
-                            <div class="title">{{ trans('storefront::layouts.my_account') }}</div>
-
-                            <ul class="list-inline">
-                                <li>
-                                    <a href="{{ route('account.dashboard.index') }}">
-                                        {{ trans('storefront::account.pages.dashboard') }}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('account.orders.index') }}">
-                                        {{ trans('storefront::account.pages.my_orders') }}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('account.reviews.index') }}">
-                                        {{ trans('storefront::account.pages.my_reviews') }}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('account.profile.edit') }}">
-                                        {{ trans('storefront::account.pages.my_profile') }}
-                                    </a>
-                                </li>
-
-                                @auth
-                                    <li>
-                                        <a href="{{ route('logout') }}">
-                                            {{ trans('storefront::account.pages.logout') }}
-                                        </a>
-                                    </li>
-                                @endauth
-                            </ul>
-                        </div>
-                    </div>
-
-                    @if ($footerMenuOne->isNotEmpty())
-                        <div class="col-lg-3 col-md-5">
-                            <div class="footer-links">
-                                <div class="title">{{ setting('storefront_footer_menu_one_title') }}</div>
-
-                                <ul class="list-inline">
-                                    @foreach ($footerMenuOne as $menuItem)
-                                        <li>
-                                            <a href="{{ $menuItem->url() }}" target="{{ $menuItem->target }}">
-                                                {{ $menuItem->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if ($footerMenuTwo->isNotEmpty())
-                        <div class="col-lg-3 col-md-5">
-                            <div class="footer-links">
-                                <div class="title">{{ setting('storefront_footer_menu_two_title') }}</div>
-
-                                <ul class="list-inline">
-                                    @foreach ($footerMenuTwo as $menuItem)
-                                        <li>
-                                            <a href="{{ $menuItem->url() }}" target="{{ $menuItem->target }}">
-                                                {{ $menuItem->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-
                     @if ($footerTags->isNotEmpty())
-                        <div class="col-lg-4 col-md-7">
+                        <div class="col-18">
                             <div class="footer-links footer-tags">
                                 <div class="title">{{ trans('storefront::layouts.tags') }}</div>
 
@@ -152,7 +153,7 @@
                                                     <path d="M4.16989 15.3L8.69989 19.83C10.5599 21.69 13.5799 21.69 15.4499 19.83L19.8399 15.44C21.6999 13.58 21.6999 10.56 19.8399 8.69005L15.2999 4.17005C14.3499 3.22005 13.0399 2.71005 11.6999 2.78005L6.69989 3.02005C4.69989 3.11005 3.10989 4.70005 3.00989 6.69005L2.76989 11.69C2.70989 13.04 3.21989 14.35 4.16989 15.3Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                     <path d="M9.5 12C10.8807 12 12 10.8807 12 9.5C12 8.11929 10.8807 7 9.5 7C8.11929 7 7 8.11929 7 9.5C7 10.8807 8.11929 12 9.5 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
                                                 </svg>
-                                                
+
                                                 {{ $footerTag->name }}
                                             </a>
                                         </li>

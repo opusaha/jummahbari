@@ -11,6 +11,16 @@
     }
 }
 
+// Keep every footer column top-aligned so paired blocks (e.g. My Account + Contact Us)
+// share the same heading baseline; avoids vertical centering when column heights differ.
+.footer-top-grid {
+    align-items: flex-start;
+
+    > [class*="col-"] {
+        align-self: flex-start;
+    }
+}
+
 .footer-links:not(.footer-tags) {
     .list-inline {
         li {
@@ -134,18 +144,8 @@
 }
 
 @media screen and (max-width: 991px) {
-    .footer-top {
-        > .row {
-            > div:nth-child(4) {
-                .footer-links {
-                    margin-top: 38px;
-                }
-            }
-        }
-    }
-
-    .footer-tags {
-        margin-top: 38px;
+    .footer-top-grid .footer-tags {
+        margin-top: 8px;
     }
 }
 
@@ -156,7 +156,7 @@
         }
     }
 
-    .footer-links {
-        margin-top: 38px;
+    .footer-top-grid .footer-links:not(.footer-tags) {
+        margin-top: 0;
     }
 }
